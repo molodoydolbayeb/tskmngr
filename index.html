@@ -2,59 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Task Manager - Setup</title>
+<title>Task Manager</title>
+<!-- Подключаем файл стилей -->
 <link rel="stylesheet" href="style.css">
-<style>
-  body {
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align to the top */
-    min-height: 100vh;
-    background-color: #f0f2f5; /* Light grey background */
-    margin: 0;
-    padding-top: 50px; /* Top padding */
-  }
-  .task-form {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center elements */
-    width: 90%;
-    max-width: 400px; /* Max form width */
-  }
-  h1 {
-    color: #673ab7; /* Purple color */
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  #task-description {
-    width: 100%; /* Input takes full width */
-    padding: 12px 15px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box; /* Padding included in width */
-  }
-  #add-task-button {
-    background-color: #9c27b0; /* Purple */
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    width: 100%; /* Button also full width */
-  }
-  #add-task-button:hover {
-    background-color: #7b1fa2; /* Darker purple on hover */
-  }
-</style>
 </head>
 <body>
 
@@ -64,8 +14,101 @@
   <button id="add-task-button">Add Task</button>
 </div>
 
+<!-- Section to display tasks -->
+<div class="task-list-container">
+  <h2>My Tasks</h2>
+  <ul id="task-list">
+    <!-- Task items will be dynamically added here by JavaScript -->
+  </ul>
+</div>
+
 <script>
-  // No JavaScript logic here yet, we're just setting up the HTML!
+  // --- DOM Elements ---
+  const taskInput = document.getElementById('task-description');
+  const addTaskBtn = document.getElementById('add-task-button');
+  const taskList = document.getElementById('task-list');
+
+  // --- Functions ---
+
+  // Function to create a task list item
+  function createTaskElement(taskText) {
+    const li = document.createElement('li');
+
+    // Checkbox for completion
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.classList.add('task-checkbox');
+    checkbox.addEventListener('change', toggleTaskCompletion);
+
+    // Span for task text
+    const taskSpan = document.createElement('span');
+    taskSpan.textContent = taskText;
+    taskSpan.classList.add('task-text');
+
+    // Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add('delete-button');
+    deleteBtn.addEventListener('click', deleteTask);
+
+    // Assemble the task item
+    const taskContent = document.createElement('div');
+    taskContent.classList.add('task-content');
+    taskContent.appendChild(checkbox);
+    taskContent.appendChild(taskSpan);
+
+    li.appendChild(taskContent);
+    li.appendChild(deleteBtn);
+
+    return li;
+  }
+
+  // Function to add a new task
+  function addTask() {
+    const taskText = taskInput.value.trim();
+
+    if (taskText === "") {
+      alert("Please enter a task description!");
+      return;
+    }
+
+    const newTaskElement = createTaskElement(taskText);
+    taskList.appendChild(newTaskElement);
+
+    // Clear input field
+    taskInput.value = "";
+  }
+
+  // Function to toggle task completion status
+  function toggleTaskCompletion(event) {
+    const li = event.target.closest('li'); // Find the parent list item
+    if (li) {
+      li.classList.toggle('completed');
+    }
+  }
+
+  // Function to delete a task
+  function deleteTask(event) {
+    const li = event.target.closest('li'); // Find the parent list item
+    if (li) {
+      taskList.removeChild(li);
+    }
+  }
+
+  // --- Event Listeners ---
+  addTaskBtn.addEventListener('click', addTask);
+
+  // Allow adding task by pressing Enter key
+  taskInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      addTask();
+    }
+  });
+
+  // --- Initial Load (Optional: if you add saved tasks later) ---
+  // Example: If tasks were saved, you'd load and display them here.
+  // For now, the list starts empty.
+
 </script>
 
 </body>
