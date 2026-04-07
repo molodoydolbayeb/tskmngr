@@ -1,4 +1,148 @@
-h1 {
-    color: blue;
-    background-color: pink;
-}   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Task Manager - Enhanced Purple Theme</title>
+<style>
+  /* --- Color Palette --- */
+  :root {
+    --primary-purple: #673ab7;    /* Main purple */
+    --secondary-purple: #9c27b0;   /* Accent purple */
+    --darker-purple: #4a148c;     /* Very dark purple for emphasis/hover */
+    --light-purple-bg: #e1bee7;   /* Light purple for backgrounds */
+    --lighter-purple-border: #d1c4e9; /* Subtle light purple for borders */
+    --text-color: #333;           /* Default dark text */
+    --placeholder-color: #aaa;     /* Placeholder text color */
+    --button-text-color: #fff;      /* Text color on buttons */
+    --form-bg: #fff;              /* White background for the form */
+    --page-bg: #f8f0ff;           /* Very light purplish page background */
+    --input-bg: #f9f9f9;          /* Slightly off-white for input background */
+    --shadow-color-strong: rgba(103, 58, 183, 0.4); /* Strong purple shadow */
+    --shadow-color-subtle: rgba(0, 0, 0, 0.1);    /* Subtle general shadow */
+    --focus-glow-color: rgba(156, 39, 176, 0.3); /* Purple focus ring */
+  }
+
+  /* --- Global Styles --- */
+  body {
+    font-family: 'Roboto', 'Arial', sans-serif; /* Added Roboto for a nicer font */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top */
+    min-height: 100vh;
+    background-color: var(--page-bg);
+    margin: 0;
+    padding-top: 60px; /* Increased padding */
+    color: var(--text-color);
+    line-height: 1.6; /* Improved readability */
+  }
+
+  /* --- Form Container --- */
+  .task-form {
+    background: var(--form-bg);
+    padding: 35px; /* Increased padding */
+    border-radius: 15px; /* More rounded */
+    box-shadow: 0 8px 30px var(--shadow-color-strong); /* Stronger shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 420px; /* Slightly wider */
+    border: 1px solid var(--lighter-purple-border);
+    transition: all 0.4s ease-in-out; /* Smooth transitions for any future changes */
+  }
+  .task-form:hover {
+     box-shadow: 0 12px 40px var(--shadow-color-strong); /* Enhanced shadow on hover */
+     transform: translateY(-5px); /* Subtle lift on hover */
+  }
+
+  /* --- Heading --- */
+  h1 {
+    color: var(--primary-purple);
+    margin-bottom: 30px; /* More space below heading */
+    font-size: 28px; /* Larger heading */
+    font-weight: 700; /* Bolder */
+    text-align: center;
+  }
+
+  /* --- Input Field --- */
+  #task-description {
+    width: 100%;
+    padding: 18px 22px; /* More generous padding */
+    margin-bottom: 25px; /* More space below input */
+    border: 2px solid var(--lighter-purple-border); /* Thicker, lighter purple border */
+    border-radius: 10px; /* Nicer rounding */
+    font-size: 18px; /* Larger font */
+    box-sizing: border-box;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    outline: none; /* Remove default outline */
+  }
+
+  #task-description::placeholder {
+    color: var(--placeholder-color); /* Style placeholder text */
+  }
+
+  #task-description:focus {
+    border-color: var(--secondary-purple); /* Accent purple on focus */
+    box-shadow: 0 0 0 4px var(--focus-glow-color); /* Distinct purple focus ring */
+    transform: scale(1.02); /* Slightly enlarge input on focus */
+  }
+
+  /* --- Button --- */
+  #add-task-button {
+    background-color: var(--secondary-purple);
+    color: var(--button-text-color);
+    padding: 16px 35px; /* Larger button */
+    border: none;
+    border-radius: 10px; /* Match input rounding */
+    cursor: pointer;
+    font-size: 18px; /* Larger font */
+    font-weight: 600; /* Semibold */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-shadow: 0 6px 15px var(--shadow-color-strong); /* Button-specific shadow */
+    letter-spacing: 0.5px; /* Slight letter spacing */
+  }
+
+  #add-task-button:hover {
+    background-color: var(--primary-purple); /* Darker purple on hover */
+    transform: translateY(-3px); /* More pronounced lift */
+    box-shadow: 0 10px 25px var(--shadow-color-strong); /* Stronger shadow */
+  }
+
+   #add-task-button:active {
+     transform: translateY(-1px); /* Less pronounced press effect */
+     box-shadow: 0 4px 10px var(--shadow-color-strong); /* Adjusted shadow */
+   }
+
+   /* --- Optional: Add a subtle background pattern --- */
+   body::before {
+     content: '';
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="0,100 100,100 100,0 90,0 10,100" fill="%23e1bee7" opacity="0.3"/></svg>'); /* Simple purple diamond pattern */
+     background-size: 50px 50px; /* Adjust size of the pattern */
+     z-index: -1; /* Place it behind content */
+     opacity: 0.6;
+   }
+
+</style>
+</head>
+<body>
+
+<div class="task-form">
+  <h1>Add New Task</h1>
+  <input type="text" id="task-description" placeholder="Enter task description...">
+  <button id="add-task-button">Add Task</button>
+</div>
+
+<script>
+  // Still focusing on the visual styling. No JavaScript logic added yet.
+</script>
+
+</body>
+</html>
