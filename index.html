@@ -1,115 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Task Manager</title>
-<!-- Подключаем файл стилей -->
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="task-form">
-  <h1>Add New Task</h1>
-  <input type="text" id="task-description" placeholder="Enter task description...">
-  <button id="add-task-button">Add Task</button>
-</div>
+  <div class="task-form">
+    <h1>Add New Task</h1>
+    <input type="text" id="task-description" placeholder="Enter task description...">
+    <button id="add-task-button">Add Task</button>
+  </div>
 
-<!-- Section to display tasks -->
-<div class="task-list-container">
-  <h2>My Tasks</h2>
-  <ul id="task-list">
-    <!-- Task items will be dynamically added here by JavaScript -->
-  </ul>
-</div>
+  <div class="task-list-container">
+    <h2>My Tasks</h2>
+    <ul id="task-list"></ul>
+  </div>
 
-<script>
-  // --- DOM Elements ---
-  const taskInput = document.getElementById('task-description');
-  const addTaskBtn = document.getElementById('add-task-button');
-  const taskList = document.getElementById('task-list');
-
-  // --- Functions ---
-
-  // Function to create a task list item
-  function createTaskElement(taskText) {
-    const li = document.createElement('li');
-
-    // Checkbox for completion
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.classList.add('task-checkbox');
-    checkbox.addEventListener('change', toggleTaskCompletion);
-
-    // Span for task text
-    const taskSpan = document.createElement('span');
-    taskSpan.textContent = taskText;
-    taskSpan.classList.add('task-text');
-
-    // Delete button
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.classList.add('delete-button');
-    deleteBtn.addEventListener('click', deleteTask);
-
-    // Assemble the task item
-    const taskContent = document.createElement('div');
-    taskContent.classList.add('task-content');
-    taskContent.appendChild(checkbox);
-    taskContent.appendChild(taskSpan);
-
-    li.appendChild(taskContent);
-    li.appendChild(deleteBtn);
-
-    return li;
-  }
-
-  // Function to add a new task
-  function addTask() {
-    const taskText = taskInput.value.trim();
-
-    if (taskText === "") {
-      alert("Please enter a task description!");
-      return;
-    }
-
-    const newTaskElement = createTaskElement(taskText);
-    taskList.appendChild(newTaskElement);
-
-    // Clear input field
-    taskInput.value = "";
-  }
-
-  // Function to toggle task completion status
-  function toggleTaskCompletion(event) {
-    const li = event.target.closest('li'); // Find the parent list item
-    if (li) {
-      li.classList.toggle('completed');
-    }
-  }
-
-  // Function to delete a task
-  function deleteTask(event) {
-    const li = event.target.closest('li'); // Find the parent list item
-    if (li) {
-      taskList.removeChild(li);
-    }
-  }
-
-  // --- Event Listeners ---
-  addTaskBtn.addEventListener('click', addTask);
-
-  // Allow adding task by pressing Enter key
-  taskInput.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-      addTask();
-    }
-  });
-
-  // --- Initial Load (Optional: if you add saved tasks later) ---
-  // Example: If tasks were saved, you'd load and display them here.
-  // For now, the list starts empty.
-
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>

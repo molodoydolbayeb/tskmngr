@@ -1,36 +1,33 @@
-/* --- Color Palette --- */
 :root {
-  --primary-purple: #673ab7;    /* Main purple */
-  --secondary-purple: #9c27b0;   /* Accent purple */
-  --darker-purple: #4a148c;     /* Very dark purple for emphasis/hover */
-  --light-purple-bg: #e1bee7;   /* Light purple for backgrounds */
-  --lighter-purple-border: #d1c4e9; /* Subtle light purple for borders */
-  --text-color: #333;           /* Default dark text */
-  --placeholder-color: #aaa;     /* Placeholder text color */
-  --button-text-color: #fff;      /* Text color on buttons */
-  --form-bg: #fff;              /* White background for the form */
-  --page-bg: #f8f0ff;           /* Very light purplish page background */
-  --input-bg: #f9f9f9;          /* Slightly off-white for input background */
-  --shadow-color-strong: rgba(103, 58, 183, 0.4); /* Strong purple shadow */
-  --shadow-color-subtle: rgba(0, 0, 0, 0.1);    /* Subtle general shadow */
-  --focus-glow-color: rgba(156, 39, 176, 0.3); /* Purple focus ring */
+  --primary-purple: #673ab7;
+  --secondary-purple: #9c27b0;
+  --darker-purple: #4a148c;
+  --light-purple-bg: #e1bee7;
+  --lighter-purple-border: #d1c4e9;
+  --text-color: #333;
+  --placeholder-color: #aaa;
+  --button-text-color: #fff;
+  --form-bg: #fff;
+  --page-bg: #f8f0ff;
+  --input-bg: #f9f9f9;
+  --shadow-color-strong: rgba(103, 58, 183, 0.4);
+  --shadow-color-subtle: rgba(0, 0, 0, 0.1);
+  --focus-glow-color: rgba(156, 39, 176, 0.3);
 
-  /* --- Task Specific Colors --- */
-  --task-item-bg: #ffffff; /* White background for task items */
-  --task-item-border-left: var(--secondary-purple); /* Purple left border */
-  --completed-task-bg: #e0e0e0; /* Greyish background for completed tasks */
-  --completed-task-border-left: #bdbdbd; /* Grey border for completed tasks */
-  --completed-task-text-color: #888; /* Muted text for completed tasks */
-  --delete-button-bg: #e57373; /* Reddish color for delete button */
-  --delete-button-hover-bg: #ef5350; /* Lighter red on hover */
+  --task-item-bg: #ffffff;
+  --task-item-border-left: var(--secondary-purple);
+  --completed-task-bg: #e0e0e0;
+  --completed-task-border-left: #bdbdbd;
+  --completed-task-text-color: #888;
+  --delete-button-bg: #e57373;
+  --delete-button-hover-bg: #ef5350;
 }
 
-/* --- Global Styles --- */
 body {
   font-family: 'Roboto', 'Arial', sans-serif;
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center horizontally */
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
   background-color: var(--page-bg);
   margin: 0;
@@ -39,7 +36,6 @@ body {
   line-height: 1.6;
 }
 
-/* --- Form Container --- */
 .task-form {
   background: var(--form-bg);
   padding: 35px;
@@ -52,14 +48,14 @@ body {
   max-width: 420px;
   border: 1px solid var(--lighter-purple-border);
   transition: all 0.4s ease-in-out;
-  margin-bottom: 30px; /* Add margin below the form */
-}
-.task-form:hover {
-   box-shadow: 0 12px 40px var(--shadow-color-strong);
-   transform: translateY(-5px);
+  margin-bottom: 30px;
 }
 
-/* --- Heading --- */
+.task-form:hover {
+  box-shadow: 0 12px 40px var(--shadow-color-strong);
+  transform: translateY(-5px);
+}
+
 h1 {
   color: var(--primary-purple);
   margin-bottom: 30px;
@@ -68,7 +64,6 @@ h1 {
   text-align: center;
 }
 
-/* --- Input Field --- */
 #task-description {
   width: 100%;
   padding: 18px 22px;
@@ -93,7 +88,6 @@ h1 {
   transform: scale(1.02);
 }
 
-/* --- Button --- */
 #add-task-button {
   background-color: var(--secondary-purple);
   color: var(--button-text-color);
@@ -115,15 +109,14 @@ h1 {
   box-shadow: 0 10px 25px var(--shadow-color-strong);
 }
 
- #add-task-button:active {
-   transform: translateY(-1px);
-   box-shadow: 0 4px 10px var(--shadow-color-strong);
- }
+#add-task-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px var(--shadow-color-strong);
+}
 
-/* --- Task List Display Area --- */
 .task-list-container {
   width: 90%;
-  max-width: 420px; /* Match form width */
+  max-width: 420px;
   background: var(--form-bg);
   padding: 25px;
   border-radius: 15px;
@@ -145,7 +138,7 @@ h1 {
   margin: 0;
 }
 
-#task-list li {
+#task-list li.task-item {
   background-color: var(--task-item-bg);
   border-left: 5px solid var(--task-item-border-left);
   padding: 15px 20px;
@@ -159,12 +152,11 @@ h1 {
   cursor: pointer;
 }
 
-#task-list li:hover {
+#task-list li.task-item:hover {
   transform: translateX(5px);
   box-shadow: 0 4px 12px var(--shadow-color-subtle);
 }
 
-/* --- Task Item Content --- */
 .task-content {
   display: flex;
   align-items: center;
@@ -183,24 +175,23 @@ h1 {
   font-size: 16px;
 }
 
-/* --- Completed Task Styling --- */
 #task-list li.completed {
   background-color: var(--completed-task-bg);
   border-left-color: var(--completed-task-border-left);
   color: var(--completed-task-text-color);
   cursor: default;
 }
- #task-list li.completed:hover {
-   transform: none;
-   box-shadow: 0 2px 8px var(--shadow-color-subtle);
- }
+
+#task-list li.completed:hover {
+  transform: none;
+  box-shadow: 0 2px 8px var(--shadow-color-subtle);
+}
 
 #task-list li.completed .task-text {
   text-decoration: line-through;
   font-style: italic;
 }
 
-/* --- Delete Button --- */
 .delete-button {
   background-color: var(--delete-button-bg);
   color: var(--button-text-color);
@@ -217,50 +208,53 @@ h1 {
   background-color: var(--delete-button-hover-bg);
   transform: scale(1.05);
 }
+
 .delete-button:active {
   transform: scale(0.98);
 }
 
-/* --- Responsive Adjustments --- */
 @media (max-width: 500px) {
   .task-form, .task-list-container {
     padding: 25px;
     max-width: 90%;
   }
+
   h1 {
     font-size: 24px;
   }
+
   .task-list-container h2 {
-      font-size: 20px;
+    font-size: 20px;
   }
+
   #task-description, #add-task-button {
     font-size: 16px;
     padding: 14px 18px;
   }
-  .task-list li {
-      padding: 12px 15px;
+
+  .task-list-container li.task-item {
+    padding: 12px 15px;
   }
+
   .task-text {
-      font-size: 15px;
+    font-size: 15px;
   }
+
   .delete-button {
-      font-size: 13px;
-      padding: 6px 12px;
+    font-size: 13px;
+    padding: 6px 12px;
   }
 }
 
-/* --- SVG Pattern --- */
- body::before {
-   content: '';
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="0,100 100,100 100,0 90,0 10,100" fill="%23e1bee7" opacity="0.3"/></svg>');
-   background-size: 50px 50px;
-   z-index: -1;
-   opacity: 0.6;
- }
-
-   /* --- Optional: Add a subtle background
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><polygon points="0,100 100,100 100,0 90,0 10,100" fill="%23e1bee7" opacity="0.3"/></svg>');
+  background-size: 50px 50px;
+  z-index: -1;
+  opacity: 0.6;
+}
