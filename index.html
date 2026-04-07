@@ -1,12 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  Task Manager</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Task Manager - Setup</title>
+link css="stylesheet" href="style.css">
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top */
+    min-height: 100vh;
+    background-color: #f0f2f5; /* Light grey background */
+    margin: 0;
+    padding-top: 50px; /* Top padding */
+  }
+  .task-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center elements */
+    width: 90%;
+    max-width: 400px; /* Max form width */
+  }
+  h1 {
+    color: #673ab7; /* Purple color */
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  #task-description {
+    width: 100%; /* Input takes full width */
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box; /* Padding included in width */
+  }
+  #add-task-button {
+    background-color: #9c27b0; /* Purple */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Button also full width */
+  }
+  #add-task-button:hover {
+    background-color: #7b1fa2; /* Darker purple on hover */
+  }
+</style>
 </head>
 <body>
-    <h1>Task Manager</h1>
+
+<div class="task-form">
+  <h1>Add New Task</h1>
+  <input type="text" id="task-description" placeholder="Enter task description...">
+  <button id="add-task-button">Add Task</button>
+</div>
+
+<script>
+  // No JavaScript logic here yet, we're just setting up the HTML!
+</script>
+
 </body>
 </html>
