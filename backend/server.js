@@ -1,22 +1,38 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const { Low } = require('lowdb');
+const { JSONFile } = require('lowdb/node');
 
 const app = express();
-const PORT = 3001;
-
 app.use(cors());
 app.use(express.json());
 
-// Главная страница API
-app.get('/', (req, res) => {
-  res.json({ message: 'Task Manager API works!' });
+const __dirname = path.resolve();
+const adapter = new JSONFile(path.join(__dirname, 'db.json'));
+const db = new Low(adapter);
+
+app.get('/tasks', async (req, res) => {
+  await db.read();
+  res.json(db.data?.tasks || []);
 });
 
-// Подключаем маршруты /tasks
-const tasksRouter = require('./routes/tasks');
-app.use('/tasks', tasksRouter);
-
-// Запуск сервера
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.post('/tasks', async (req, res) => {
+  await db.read();
+  db.data ||= { tasks: [] };
+  const newTask = { id: Date.now(), ...req.body };
+  db.data.tasks.push(newTask);
+  await db.write();
+  res.json(newTask);
 });
+
+app.delete('/tasks/:id', async (req, res) => {
+  await db.read();
+  db.data.tasks = db.data.tasks.filter(t => t.id != req.params.id);
+  await db.write();
+  res.json({ success: true });
+});
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server running!');
+});;

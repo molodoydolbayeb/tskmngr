@@ -1,7 +1,7 @@
 {
   "name": "task-manager-backend",
   "version": "1.0.0",
-  "description": "Backend API for task manager (Node.js + Express + MySQL)",
+  "description": "Backend API for task manager (Node.js + Express + lowdb)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -10,8 +10,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.0",
-    "mysql2": "^3.9.0",
-    "sqlite3": "^6.0.1"
+    "lowdb": "^7.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"
@@ -19,7 +18,7 @@
   "keywords": [
     "nodejs",
     "express",
-    "mysql",
+    "lowdb",
     "task-manager"
   ],
   "author": "YOUR_NAME",
